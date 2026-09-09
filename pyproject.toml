@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "template-to-pdf"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = ["markdown", "weasyprint"]
+
+[project.scripts]
+template-to-pdf = "template_to_pdf.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["template_to_pdf*"]

@@ -1,0 +1,16 @@
+{
+  "name": "template-to-pdf",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": "./js/index.js",
+  "bin": {
+    "template-to-pdf": "./js/cli.js"
+  },
+  "scripts": {
+    "test": "node tests/test_core.js"
+  },
+  "dependencies": {
+    "marked": "^15.0.0",
+    "puppeteer": "^24.0.0"
+  }
+}
