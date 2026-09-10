@@ -9,15 +9,23 @@ _FENCE = re.compile(r"```(?:json)?\s*([\s\S]*?)```")
 
 
 def _parse_json(text):
+    if not isinstance(text, str):
+        return None
     text = text.strip()
-    m = _FENCE.search(text)
-    if m:
-        text = m.group(1).strip()
     try:
         val = json.loads(text)
+        if isinstance(val, dict):
+            return val
     except json.JSONDecodeError:
-        return None
-    return val if isinstance(val, dict) else None
+        pass
+    for m in _FENCE.finditer(text):
+        try:
+            val = json.loads(m.group(1).strip())
+            if isinstance(val, dict):
+                return val
+        except json.JSONDecodeError:
+            continue
+    return None
 
 
 def extract(text, llm=None):

@@ -6,8 +6,10 @@ def normalize(data):
         title = ""
     elif not isinstance(title, str):
         title = str(title)
-    raw = data.get("sections", [])
-    if not isinstance(raw, list):
+    raw = data.get("sections")
+    if raw is None:
+        raw = []
+    elif not isinstance(raw, list):
         raise TypeError("sections must be a list")
     sections = []
     for item in raw:
@@ -19,8 +21,10 @@ def normalize(data):
             "heading": "" if heading is None else str(heading),
             "body": "" if body is None else str(body),
         })
-    meta = data.get("meta") or {}
-    if not isinstance(meta, dict):
+    meta = data.get("meta")
+    if meta is None:
+        meta = {}
+    elif not isinstance(meta, dict):
         raise TypeError("meta must be an object")
     return {"title": title, "sections": sections, "meta": {str(k): "" if v is None else str(v) for k, v in meta.items()}}
 

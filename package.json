@@ -7,7 +7,7 @@
     "template-to-pdf": "./js/cli.js"
   },
   "scripts": {
-    "test": "node tests/test_core.js"
+    "test": "node --test tests/test_core.js"
   },
   "dependencies": {
     "marked": "^15.0.0",
