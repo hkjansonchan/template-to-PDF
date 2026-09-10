@@ -72,3 +72,20 @@ await toPdf(html, "out.pdf")
 python tests/test_core.py
 npm test
 ```
+
+## Collaboration
+
+```bash
+# Clone the repository to your local machine
+git clone https://github.com/hkjansonchan/template-to-PDF.git
+
+# Make changes
+
+# Create and switch to a new branch (or skip this if using an existing branch)
+git branch your-branch-name
+
+# Commit your changes with a descriptive message
+git commit -m ""
+
+# Push your branch to GitHub
+git push -u origin your-branch-name
