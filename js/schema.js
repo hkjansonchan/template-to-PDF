@@ -5,8 +5,9 @@ export function normalize(data) {
   let title = data.title
   if (title == null) title = ""
   else if (typeof title !== "string") title = String(title)
-  const raw = data.sections ?? []
-  if (!Array.isArray(raw)) throw new TypeError("sections must be a list")
+  let raw = data.sections
+  if (raw == null) raw = []
+  else if (!Array.isArray(raw)) throw new TypeError("sections must be a list")
   const sections = raw.map((item) => {
     if (item === null || typeof item !== "object" || Array.isArray(item)) {
       throw new TypeError("section must be an object")
@@ -16,8 +17,9 @@ export function normalize(data) {
       body: item.body == null ? "" : String(item.body),
     }
   })
-  const meta = data.meta ?? {}
-  if (meta === null || typeof meta !== "object" || Array.isArray(meta)) {
+  let meta = data.meta
+  if (meta == null) meta = {}
+  else if (typeof meta !== "object" || Array.isArray(meta)) {
     throw new TypeError("meta must be an object")
   }
   const outMeta = Object.fromEntries(
@@ -31,7 +33,7 @@ export function flatten(doc) {
   const vars = { title: doc.title }
   vars.body = doc.sections.map((s) => `<h2>${s.heading}</h2>\n<p>${s.body}</p>`).join("\n")
   for (const [k, v] of Object.entries(doc.meta)) {
-    if (!(k in vars)) vars[k] = v
+    if (!Object.prototype.hasOwnProperty.call(vars, k)) vars[k] = v
   }
   return vars
 }

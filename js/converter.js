@@ -1,7 +1,12 @@
 import puppeteer from "puppeteer"
 
 export async function toPdf(html, path) {
-  const browser = await puppeteer.launch({ headless: true })
+  let browser
+  try {
+    browser = await puppeteer.launch({ headless: true })
+  } catch {
+    browser = await puppeteer.launch({ channel: "chrome", headless: true })
+  }
   try {
     const page = await browser.newPage()
     await page.setContent(html, { waitUntil: "load" })
