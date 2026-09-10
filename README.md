@@ -7,6 +7,8 @@ AI output can be JSON already, or free text passed through an `llm` callable.
 ## Install
 
 ```bash
+git clone https://github.com/hkjansonchan/template-to-PDF.git
+cd template-to-PDF
 pip install -e .
 npm install
 ```
