@@ -73,7 +73,7 @@ python tests/test_core.py
 npm test
 ```
 
-## Collaboration
+## Contributing
 
 ```bash
 # Clone the repository to your local machine
